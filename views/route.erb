@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0; padding: 0; font-family: helvetica; }
+    #map { height: 99%; width: 99%; }
+    #map, html, body {padding: 0; margin: 0; height: 100%;      }
+ 
+    header {
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: white;
+      padding: 2%;
+      border-radius: 0 0 0 5%;
+  }
+  footer { z-index: 10; position: absolute; bottom: 0; background-color: white; padding: 5%; border-radius: 0 5% 0 0}
+
+
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing,geometry"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
+<script type="text/javascript">
+
+
+var directionsDisplay = new google.maps.DirectionsRenderer(),
+    directionsService = new google.maps.DirectionsService(),
+    polys    = new Array(),
+    map      = null,
+    zoom     = 10,
+    exist = new Array();
+    
+
+    // National park borders & info
+      // Could even add more data about national park w/ key value pairs
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var citymap = {
+      test1: {
+        center: {lat: 37.317207, lng: -113.022537},
+      },
+      test2: {
+        center: {lat: 37.865101, lng: -119.538330},
+      },
+      test3: {
+        center: {lat: 44.429764, lng: -110.584663},
+      },
+      test4: {
+        center: {lat: 38.235195, lng: -120.066483},
+      },
+      test5: {
+        center: {lat: 20.701283, lng: -156.173325},
+      },
+      test6: {
+        center: {lat: 34.105156, lng: -118.731316},
+      },
+      test7: {
+        center: {lat: 39.187050, lng: -111.379890},
+      },
+      test8: {
+        center: {lat: 39.639973, lng: -104.831863},
+      },
+      test9: {
+        center: {lat: 27.612417, lng: -81.053383},
+      },
+      test10: {
+        center: {lat: 38.873840, lng: -104.886665},
+      },
+      test11: {
+        center: {lat: 34.909988, lng: -109.806793},
+      },
+      test12: {
+        center: {lat: 34.765972, lng: -84.143517},
+      },
+      test13: {
+        center: {lat: 47.206161, lng: -103.462486},
+      },
+      test14: {
+        center: {lat: 34.765972, lng: -84.143517},
+      },
+      test15: {
+        center: {lat: 32.590797, lng: -95.273666},
+      },
+      test16: {
+        center: {lat: 44.358715, lng: -123.829994},
+      },
+      test17: {
+        center: {lat: 36.887856, lng: -118.555145},
+      },
+      test18: {
+        center: {lat: 33.558990, lng: -86.707016},
+      },
+      test19: {
+        center: {lat: 44.427284, lng: -110.584389},
+      },
+      test20: {
+        center: {lat: 35.130459, lng: -81.345444},
+      },
+      test21: {
+        center: {lat: 46.867702, lng: -69.480286},
+      },
+      test22: {
+        center: {lat: 21.363251, lng: -157.781265},
+      },
+      test23: {
+        center: {lat: 25.921614, lng: -80.144402},
+      },
+      test24: {
+        center: {lat: 41.876465, lng: -87.621887},
+      },
+      test25: {
+        center: {lat: 45.398449, lng: -92.645126},
+      },
+      test26: {
+        center: {lat: 45.043449, lng: -118.949318},
+      },
+      test27: {
+        center: {lat: 44.060471, lng: -122.091736},
+      },
+      test28: {
+        center: {lat: 39.814339, lng: -105.395622},
+      },
+      test29: {
+        center: {lat: 39.702827, lng: -105.175636},
+      },
+      test30: {
+        center: {lat: 35.593670, lng: -83.824997},
+      },
+      test31: {
+        center: {lat: 39.516754, lng: -80.649948},
+      },
+      test32: {
+        center: {lat: 26.988386, lng: -82.286552},
+      },
+      test33: {
+        center: {lat: 28.545021, lng: -81.372856},
+      },
+      test34: {
+        center: {lat: 30.262793, lng: -87.636337},
+      },
+      test35: {
+        center: {lat: 40.115486, lng: -81.114090},
+      },
+      test36: {
+        center: {lat: 33.976376, lng: -84.579163},
+      },
+      test37: {
+        center: {lat: 38.700516, lng: -78.292694},
+      },
+      test38: {
+        center: {lat: 41.339184, lng: -76.290436},
+      },
+      test39: {
+        center: {lat: 37.866047, lng: -96.756935},
+      },
+      test40: {
+        center: {lat: 22.079357, lng: -159.761642},
+      },
+      test41: {
+        center: {lat: 34.375179, lng: -80.863495},
+      },
+      test42: {
+        center: {lat: 19.788027, lng: -156.023453},
+      },
+      test43: {
+        center: {lat: 47.342545, lng: -114.209747},
+      },
+      test44: {
+        center: {lat: 39.319424, lng: -104.730606},
+      },
+      test45: {
+        center: {lat: 40.453739, lng: -80.400864},
+      },
+      test46: {
+        center: {lat: 28.673721, lng: -81.104507},
+      },
+      test47: {
+        center: {lat: 38.848934, lng: -92.431839},
+      },
+      test48: {
+        center: {lat: 35.768803, lng: -82.306137},
+      },
+      test49: {
+        center: {lat: 45.454350, lng: -121.933136},
+      },
+      test50: {
+        center: {lat: 44.429733, lng: -111.440849},
+      },
+      test51: {
+        center: {lat: 41.213181, lng: -124.004631},
+      },
+      test52: {
+        center: {lat: 44.422573, lng: -110.586700},
+      }
+    };
+
+
+    // myPolygons = [
+    // {
+    //     "name": "Yosemite",
+    //     "website": "http://www.yosemite.com/",
+    //     "coordinates": [
+    //         "37.561543,-119.310037",
+    //         "38.065666,-119.099618",
+    //         "38.886838,-119.745115",
+    //         "38.953411,-120.842517",
+    //         "37.631437,-120.842517",
+    //     ]
+    // },
+    // {
+    //     "name": "zone2",
+    //     "coordinates": [
+    //         "51.56683,-0.22934",
+    //         "51.54292,-0.13046",
+    //         "51.57195,0",
+    //         "51.59755,-0.03708",
+    //         "51.5984,-0.13733",
+    //         "51.59755,-0.19913"
+    //     ]
+    // },
+    // {
+    //     "name": "zone3",
+    //     "coordinates": [
+    //         "51.66148,-0.13733",
+    //         "51.61461,-0.08514",
+    //         "51.61887,0.02197",
+    //         "51.65381,0.05905",
+    //         "51.64359,-0.04807"
+    //     ]
+    // }
+    // ];
+
+
+
+// Sets up polygon outlining park over map. 
+// function drawPolygon(poly, polyLabel) {
+//     console.log('drawPolygon...');
+    
+//     var options = { 
+//         paths: poly,
+//         strokeColor: '#AA2143',
+//         strokeOpacity: 1,
+//         strokeWeight: 2,
+//         fillColor: "#FF6600",
+//         fillOpacity: 0.7,
+//         polyTitle: polyLabel    
+//     };
+    
+//     newPoly = new google.maps.Polygon(options);
+//     newPoly.setMap(map);
+//     // Adding Google Polygon object to the array set earlier
+//     polys.push(newPoly);
+//     console.log('polys length: ' + polys.length);
+// }
+
+
+// Actually draws the polygons on map. 
+// function sendPolygonForDrawing() {
+//     console.log('sendPolygonForDrawing...');
+    
+//     for(var i = 0; i < myPolygons.length; i++){
+//         poly = new Array();
+//         var coord = myPolygons[i].coordinates;
+//         var lng = coord.length;
+//         for (var j = 0; j < lng; j++){
+//             var longit_Latid = coord[j].split(',');
+//             poly.push(new google.maps.LatLng(parseFloat(longit_Latid[0]), parseFloat(longit_Latid[1])));
+//         }
+        
+//         drawPolygon(poly, myPolygons[i].name);
+//               // 
+//         poly.pop();
+//     }   
+// }
+  
+//Route
+function calcRoute(start, end) {
+    console.log('calcRoute...');
+    
+    var start = start;
+    var end = end;
+
+
+ // Commented out waypoints. 
+     // var waypts = [];
+    // var waysArray = ["London"];
+    
+    // for (var i = 0; i < waysArray.length; i++) {
+    //     waypts.push({
+    //         location: waysArray[i],
+    //         stopover:true
+    //     });
+    // }
+    // console.log('waypoints:');
+    // console.log(waypts);
+    
+    var request = {
+        origin: start,
+        destination: end,
+        // waypoints: waypts,
+        // optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            console.log(response);
+            
+            var routCoordinates = fncRouteZoneIntersection(response);//this function populates the routCoordinates with the JSON data of the route.
+
+            // var exist = new Array();
+            
+            for (var i = 0; i < polys.length; i++) {
+                for (var j = 0; j < routCoordinates.length; j++){
+
+// ***************************************************************
+// ********************* PAY SPECIAL ATTENTION *******************
+// ***************************************************************
+
+                  // Use this to display a national park or not if a coordinate along the route intersects with it.
+                    google.maps.Circle.prototype.contains = function(latLng) {
+                      return this.getBounds().contains(latLng) && google.maps.geometry.spherical.computeDistanceBetween(this.getCenter(), latLng) <= this.getRadius();
+                    }
+                    // if (google.maps.geometry.circle.containsLocation(routCoordinates[j], circle[i]) == true){
+                    //     console.log('inside!');
+                    //     exist.push(circle[i].polyTitle);
+                    //     $('#parks').append("<li>"+ circle[i].polyTitle +" </li>")
+                    //     break;
+                        /*this breaks the loop checking when a point is found inside a polygon 
+                    and go check the next one, because knowing that one point of the route is 
+                    inside a polygon is enough*/ 
+                    // if (google.maps.geometry.poly.containsLocation(routCoordinates[j], polys[i]) == true){
+                    //     console.log('inside!');
+                    //     exist.push(polys[i].polyTitle);
+                    //     $('#parks').append("<li>"+ polys[i].polyTitle +" </li>")
+                    //     break;
+                    //     /*this breaks the loop checking when a point is found inside a polygon 
+                    // and go check the next one, because knowing that one point of the route is 
+                    // inside a polygon is enough*/
+                    }
+                }
+            }
+            
+            console.log(exist);
+            return exist;
+            //alert(exist);
+        }
+    });
+
+    directionsDisplay.setMap(map); 
+}
+
+
+
+
+
+
+
+function fncRouteZoneIntersection(response) {
+    console.log('fncRouteZoneIntersection...');
+    var myRoute = response.routes[0].overview_path;
+    var lngLatCordinates = new Array();
+
+    for (var i = 0; i < myRoute.length; i++) {
+
+ // ######## COMMENTED OUT / WAS PUTTING THE MARKERS ALONG ROUTE ###### //
+ // ################################################################### //
+
+        // var marker = new google.maps.Marker({
+        //     map: map,
+        //     position: myRoute[i]
+        // });
+        lngLatCordinates.push(myRoute[i]);
+    }
+    return lngLatCordinates;
+}
+
+
+$(function() {
+    //Basic
+    var cartodbMapOptions = {
+        zoom: zoom,
+        center: new google.maps.LatLng(41.8781, 87.6298),
+        disableDefaultUI: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    // Init the map
+    map = new google.maps.Map(document.getElementById("map"),cartodbMapOptions);
+    for (var city in citymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+            radius: 160093
+          });
+        }
+    // sendPolygonForDrawing();
+    calcRoute("<%= @start %>", "<%= @end %>");
+    console.log(exist);
+    sendPolygonForDrawing();
+
+    var drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: false,
+        polygonOptions: {
+            fillColor: '#0099FF',
+            fillOpacity: 0.7,
+            strokeColor: '#AA2143',
+            strokeWeight: 2,
+            clickable: true,
+            zIndex: 1,
+            editable: true
+        }
+    });
+});
+
+</script>
+</head>
+
+<body>
+  <header>
+      <h1> Parks to visit </h1>
+      <ul id="parks">  </ul>
+  </header>
+  <div id='map'></div>
+  <footer> <a href="/"> New Route </a> </footer>
+</body>
+</html>

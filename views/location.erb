@@ -1,0 +1,532 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>   <h2> Hello <%= @user.name %> </h2>
+
+  <p><a href="/logout"> Logout </a></p> 
+  </header> 
+    <h1>What is your starting and ending point? :)</h1>
+
+
+<!-- Change action on this form and needs four fields -->
+  <form method="POST" action="/go"> 
+  <input type="text" name="starter" placeholder ="Start City">
+  <input type="text" name="ender" placeholder ="End City">
+
+  <input type="submit">
+  </form>
+
+
+  </body>
+<!-- </html> -->
+
+<!-- keep doc type and things together -->
+
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCrghSnHjAGYNiOPQbYwsatZcp4oNjRg4&callback=initMap"
+    async defer></script>
+  </body>
+
+    <script>
+
+    var citymap = {
+      test1: {
+        center: {lat: 37.317207, lng: -113.022537},
+      },
+      test2: {
+        center: {lat: 37.865101, lng: -119.538330},
+      },
+      test3: {
+        center: {lat: 44.429764, lng: -110.584663},
+      },
+      test4: {
+        center: {lat: 38.235195, lng: -120.066483},
+      },
+      test5: {
+        center: {lat: 20.701283, lng: -156.173325},
+      },
+      test6: {
+        center: {lat: 34.105156, lng: -118.731316},
+      },
+      test7: {
+        center: {lat: 39.187050, lng: -111.379890},
+      },
+      test8: {
+        center: {lat: 39.639973, lng: -104.831863},
+      },
+      test9: {
+        center: {lat: 27.612417, lng: -81.053383},
+      },
+      test10: {
+        center: {lat: 38.873840, lng: -104.886665},
+      },
+      test11: {
+        center: {lat: 34.909988, lng: -109.806793},
+      },
+      test12: {
+        center: {lat: 34.765972, lng: -84.143517},
+      },
+      test13: {
+        center: {lat: 47.206161, lng: -103.462486},
+      },
+      test14: {
+        center: {lat: 34.765972, lng: -84.143517},
+      },
+      test15: {
+        center: {lat: 32.590797, lng: -95.273666},
+      },
+      test16: {
+        center: {lat: 44.358715, lng: -123.829994},
+      },
+      test17: {
+        center: {lat: 36.887856, lng: -118.555145},
+      },
+      test18: {
+        center: {lat: 33.558990, lng: -86.707016},
+      },
+      test19: {
+        center: {lat: 44.427284, lng: -110.584389},
+      },
+      test20: {
+        center: {lat: 35.130459, lng: -81.345444},
+      },
+      test21: {
+        center: {lat: 46.867702, lng: -69.480286},
+      },
+      test22: {
+        center: {lat: 21.363251, lng: -157.781265},
+      },
+      test23: {
+        center: {lat: 25.921614, lng: -80.144402},
+      },
+      test24: {
+        center: {lat: 41.876465, lng: -87.621887},
+      },
+      test25: {
+        center: {lat: 45.398449, lng: -92.645126},
+      },
+      test26: {
+        center: {lat: 45.043449, lng: -118.949318},
+      },
+      test27: {
+        center: {lat: 44.060471, lng: -122.091736},
+      },
+      test28: {
+        center: {lat: 39.814339, lng: -105.395622},
+      },
+      test29: {
+        center: {lat: 39.702827, lng: -105.175636},
+      },
+      test30: {
+        center: {lat: 35.593670, lng: -83.824997},
+      },
+      test31: {
+        center: {lat: 39.516754, lng: -80.649948},
+      },
+      test32: {
+        center: {lat: 26.988386, lng: -82.286552},
+      },
+      test33: {
+        center: {lat: 28.545021, lng: -81.372856},
+      },
+      test34: {
+        center: {lat: 30.262793, lng: -87.636337},
+      },
+      test35: {
+        center: {lat: 40.115486, lng: -81.114090},
+      },
+      test36: {
+        center: {lat: 33.976376, lng: -84.579163},
+      },
+      test37: {
+        center: {lat: 38.700516, lng: -78.292694},
+      },
+      test38: {
+        center: {lat: 41.339184, lng: -76.290436},
+      },
+      test39: {
+        center: {lat: 37.866047, lng: -96.756935},
+      },
+      test40: {
+        center: {lat: 22.079357, lng: -159.761642},
+      },
+      test41: {
+        center: {lat: 34.375179, lng: -80.863495},
+      },
+      test42: {
+        center: {lat: 19.788027, lng: -156.023453},
+      },
+      test43: {
+        center: {lat: 47.342545, lng: -114.209747},
+      },
+      test44: {
+        center: {lat: 39.319424, lng: -104.730606},
+      },
+      test45: {
+        center: {lat: 40.453739, lng: -80.400864},
+      },
+      test46: {
+        center: {lat: 28.673721, lng: -81.104507},
+      },
+      test47: {
+        center: {lat: 38.848934, lng: -92.431839},
+      },
+      test48: {
+        center: {lat: 35.768803, lng: -82.306137},
+      },
+      test49: {
+        center: {lat: 45.454350, lng: -121.933136},
+      },
+      test50: {
+        center: {lat: 44.429733, lng: -111.440849},
+      },
+      test51: {
+        center: {lat: 41.213181, lng: -124.004631},
+      },
+      test52: {
+        center: {lat: 44.422573, lng: -110.586700},
+      }
+    };
+
+
+      function initMap() {
+        var myLatLng = {lat: 41.879, lng: -87.624};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+        for (var city in citymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+            radius: 160093
+          });
+        }
+
+
+
+
+
+        var marker = new google.maps.Marker({
+          position: {lat: 37.317207, lng: -113.022537},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 37.865101, lng: -119.538330},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 44.429764, lng: -110.584663},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 38.235195, lng: -120.066483},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 20.701283, lng: -156.173325},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 34.105156, lng: -118.731316},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 39.187050, lng: -111.379890},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 39.639973, lng: -104.831863},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 27.612417, lng: -81.053383},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 38.873840, lng: -104.886665},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 34.909988, lng: -109.806793},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 34.765972, lng: -84.143517},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 47.206161, lng: -103.462486},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 34.765972, lng: -84.143517},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 32.590797, lng: -95.273666},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 44.358715, lng: -123.829994},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 36.887856, lng: -118.555145},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 33.558990, lng: -86.707016},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 44.427284, lng: -110.584389},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 35.130459, lng: -81.345444},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 46.867702, lng: -69.480286},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 21.363251, lng: -157.781265},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 25.921614, lng: -80.144402},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 41.876465, lng: -87.621887},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 45.398449, lng: -92.645126},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 45.043449, lng: -118.949318},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 44.060471, lng: -122.091736},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 39.814339, lng: -105.395622},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 39.702827, lng: -105.175636},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 35.593670, lng: -83.824997},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 39.516754, lng: -80.649948},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 26.988386, lng: -82.286552},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 28.545021, lng: -81.372856},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 30.262793, lng: -87.636337},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 40.115486, lng: -81.114090},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 33.976376, lng: -84.579163},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 38.700516, lng: -78.292694},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 41.339184, lng: -76.290436},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 37.866047, lng: -96.756935},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 22.079357, lng: -159.761642},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 34.375179, lng: -80.863495},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 19.788027, lng: -156.023453},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 47.342545, lng: -114.209747},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 39.319424, lng: -104.730606},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 40.453739, lng: -80.400864},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 28.673721, lng: -81.104507},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 38.848934, lng: -92.431839},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 35.768803, lng: -82.306137},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 45.454350, lng: -121.933136},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 44.429733, lng: -111.440849},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 41.213181, lng: -124.004631},
+          map: map,
+          title: 'test1'
+        });
+        var marker = new google.maps.Marker({
+          position: {lat: 44.422573, lng: -110.586700},
+          map: map,
+          title: 'test1'
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: "tester"
+        });
+
+//         var circle = new google.maps.Circle({
+//   map: map,
+//   radius: 160093,    // 10 miles in metres
+//   fillColor: '#AA0000'
+// });
+//circle.bindTo('center', marker, 'position');
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCrghSnHjAGYNiOPQbYwsatZcp4oNjRg4&callback=initMap">
+    </script>
+  </body>
+</html>
